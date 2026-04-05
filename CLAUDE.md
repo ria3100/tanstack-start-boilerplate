@@ -37,6 +37,11 @@ src/components/
 - Test: vitest (`pnpm test`)
 - Check: `pnpm check` (oxfmt --write && oxlint --fix)
 
+## PR / CI
+
+- PR 作成・PR への push 後は auto-fix を有効化し、CI 失敗時に自動修正を行う
+- コミットメッセージは英語（Language セクション参照）
+
 ## Image
 
 - 画像コンポーネントは `@unpic/react` ベース

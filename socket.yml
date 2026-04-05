@@ -1,9 +1,9 @@
 version: 2
 
 triggerPaths:
-  - "/package.json"
-  - "/pnpm-lock.yaml"
-  - "/.github/workflows/**"
+  - '/package.json'
+  - '/pnpm-lock.yaml'
+  - '/.github/workflows/**'
 
 githubApp:
   enabled: true

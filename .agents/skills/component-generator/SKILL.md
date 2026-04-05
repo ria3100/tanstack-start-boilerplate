@@ -17,6 +17,7 @@ src/components/common/{category}/{component-name}.stories.tsx
 ```
 
 例:
+
 ```
 src/components/common/layout/header.tsx
 src/components/common/layout/header.stories.tsx
@@ -59,7 +60,9 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  args: { /* ... */ },
+  args: {
+    /* ... */
+  },
 }
 ```
 

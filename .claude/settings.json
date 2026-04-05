@@ -38,7 +38,7 @@
           {
             "type": "prompt",
             "if": "Bash(git push*)",
-            "prompt": "git push が完了した。`gh run list --limit 1` で CI ステータスを確認し結果を報告すること。"
+            "prompt": "git push が完了した。`gh run list --limit 1` で CI ステータスを確認し結果を報告すること。PR への push の場合、auto-fix を有効化し CI 失敗時に自動修正を行うこと。"
           }
         ]
       }
