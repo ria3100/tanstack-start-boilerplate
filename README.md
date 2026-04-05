@@ -90,7 +90,7 @@ src/
 ```tsx
 import { Link } from '@tanstack/react-router'
 
-<Link to="/about">About</Link>
+;<Link to="/about">About</Link>
 ```
 
 ### レイアウト
