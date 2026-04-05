@@ -13,7 +13,23 @@ description: Review Tailwind CSS class usage in .tsx files for quality, consiste
 
 - 同じプロパティを複数回指定していないか（例: `p-4 p-2`）
 - ショートハンドで書けるのに個別指定していないか（例: `px-4 py-4` → `p-4`）
-- デフォルト値を明示的に指定していないか（例: `font-normal` は通常不要）
+- `w-10 h-10` → `size-10` のように統一できるか
+- `overflow-hidden text-ellipsis whitespace-nowrap` → `truncate` で置換できるか
+- デフォルト値を明示的に指定���ていないか（��: `font-normal` は通常不要）
+
+### スペーシング
+
+- `space-x-*` / `space-y-*` を使っていないか → `flex` + `gap-*` を使用する
+- 垂直方向のスタックは `flex flex-col gap-*` を使用する
+
+### セマンティックカラー
+
+- `bg-blue-500` のような直値ではなく `bg-primary`, `text-muted-foreground` 等のセマンティックトークンを使用しているか
+- `dark:` で手動カラー指定していないか → セマンティックトークンで自動対応させる
+
+### z-index
+
+- オーバーレイコンポーネント（Dialog, Sheet, Popover 等）に手動で `z-index` を指定していないか → コンポーネント側で管理される
 
 ### レスポンシブ
 
