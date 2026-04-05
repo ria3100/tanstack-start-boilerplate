@@ -13,7 +13,6 @@ import { Route as McpRouteImport } from './routes/mcp'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DemoTanstackQueryRouteImport } from './routes/demo/tanstack-query'
-import { Route as DemoStorybookRouteImport } from './routes/demo/storybook'
 import { Route as DemoMcpTodosRouteImport } from './routes/demo/mcp-todos'
 import { Route as DemoApiMcpTodosRouteImport } from './routes/demo/api.mcp-todos'
 
@@ -37,11 +36,6 @@ const DemoTanstackQueryRoute = DemoTanstackQueryRouteImport.update({
   path: '/demo/tanstack-query',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DemoStorybookRoute = DemoStorybookRouteImport.update({
-  id: '/demo/storybook',
-  path: '/demo/storybook',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const DemoMcpTodosRoute = DemoMcpTodosRouteImport.update({
   id: '/demo/mcp-todos',
   path: '/demo/mcp-todos',
@@ -58,7 +52,6 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/mcp': typeof McpRoute
   '/demo/mcp-todos': typeof DemoMcpTodosRoute
-  '/demo/storybook': typeof DemoStorybookRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/demo/api/mcp-todos': typeof DemoApiMcpTodosRoute
 }
@@ -67,7 +60,6 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/mcp': typeof McpRoute
   '/demo/mcp-todos': typeof DemoMcpTodosRoute
-  '/demo/storybook': typeof DemoStorybookRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/demo/api/mcp-todos': typeof DemoApiMcpTodosRoute
 }
@@ -77,7 +69,6 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/mcp': typeof McpRoute
   '/demo/mcp-todos': typeof DemoMcpTodosRoute
-  '/demo/storybook': typeof DemoStorybookRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/demo/api/mcp-todos': typeof DemoApiMcpTodosRoute
 }
@@ -88,7 +79,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/mcp'
     | '/demo/mcp-todos'
-    | '/demo/storybook'
     | '/demo/tanstack-query'
     | '/demo/api/mcp-todos'
   fileRoutesByTo: FileRoutesByTo
@@ -97,7 +87,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/mcp'
     | '/demo/mcp-todos'
-    | '/demo/storybook'
     | '/demo/tanstack-query'
     | '/demo/api/mcp-todos'
   id:
@@ -106,7 +95,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/mcp'
     | '/demo/mcp-todos'
-    | '/demo/storybook'
     | '/demo/tanstack-query'
     | '/demo/api/mcp-todos'
   fileRoutesById: FileRoutesById
@@ -116,7 +104,6 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   McpRoute: typeof McpRoute
   DemoMcpTodosRoute: typeof DemoMcpTodosRoute
-  DemoStorybookRoute: typeof DemoStorybookRoute
   DemoTanstackQueryRoute: typeof DemoTanstackQueryRoute
   DemoApiMcpTodosRoute: typeof DemoApiMcpTodosRoute
 }
@@ -151,13 +138,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DemoTanstackQueryRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/demo/storybook': {
-      id: '/demo/storybook'
-      path: '/demo/storybook'
-      fullPath: '/demo/storybook'
-      preLoaderRoute: typeof DemoStorybookRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/demo/mcp-todos': {
       id: '/demo/mcp-todos'
       path: '/demo/mcp-todos'
@@ -180,7 +160,6 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   McpRoute: McpRoute,
   DemoMcpTodosRoute: DemoMcpTodosRoute,
-  DemoStorybookRoute: DemoStorybookRoute,
   DemoTanstackQueryRoute: DemoTanstackQueryRoute,
   DemoApiMcpTodosRoute: DemoApiMcpTodosRoute,
 }

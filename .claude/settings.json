@@ -13,9 +13,9 @@
           {
             "type": "command",
             "if": "Bash(git commit*)",
-            "command": "pnpm -C \"$CLAUDE_PROJECT_DIR\" check && pnpm -C \"$CLAUDE_PROJECT_DIR\" test",
-            "timeout": 120,
-            "statusMessage": "Running check..."
+            "command": "pnpm -C \"$CLAUDE_PROJECT_DIR\" check && pnpm -C \"$CLAUDE_PROJECT_DIR\" exec tsgo --noEmit && pnpm -C \"$CLAUDE_PROJECT_DIR\" test",
+            "timeout": 180,
+            "statusMessage": "Running check, tsc, test..."
           }
         ]
       }
@@ -48,6 +48,33 @@
           {
             "type": "prompt",
             "prompt": "styles.css was modified. This may affect Tailwind token definitions. Review the changes."
+          }
+        ]
+      },
+      {
+        "matcher": "vite.config.ts|vitest.config.ts",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "Build or test config was modified. Verify that dev server, build, and tests still work correctly."
+          }
+        ]
+      },
+      {
+        "matcher": "tsconfig.json",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "tsconfig.json was modified. Check for path alias, compiler option, or include/exclude changes that may affect builds and IDE behavior."
+          }
+        ]
+      },
+      {
+        "matcher": "oxlint.json",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "oxlint.json was modified. Review rule changes and verify lint still passes."
           }
         ]
       }
