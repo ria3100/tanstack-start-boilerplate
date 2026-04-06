@@ -17,6 +17,12 @@
 - `#/*` は使用しない
 - `package.json` の `imports` フィールドは使用しない
 
+## export 方針
+
+- アプリケーションコードでは `default export` を使用せず、named export を使用する
+- 例外として、Storybook の `export default meta` とツール設定ファイルの `export default` は許容する
+- `src/components/ui/` の shadcn 生成物は生成元のスタイルを維持してよく、`function` 宣言や既存の export 形式を無理に変えない
+
 ## コンポーネント構成
 
 ```text
@@ -31,6 +37,15 @@ src/components/
 - `src/components/ui/` は shadcn の生成物用であり、手動で新規作成しない
 - 汎用コンポーネントは `src/components/common/` 配下に配置する
 - `@unpic/react` を直接 import せず `common/media/image.tsx` 経由で使用する
+
+## ルートのコロケーション
+
+- ページ専用の分割コンポーネント、hook、schema、整形関数は `src/routes/` 配下でルート近傍に配置してよい
+- 推奨構成は `src/routes/<route>/index.tsx` をルート定義ファイルとし、補助ファイルは `src/routes/<route>/components/`, `src/routes/<route>/hooks/`, `src/routes/<route>/lib/` のように同ディレクトリへコロケーションする
+- ルート定義ファイルには route 定義、`head()`, loader/action 呼び出し、ページ骨格だけを残し、表示の塊は近傍ファイルへ分割する
+- 複数画面で再利用するようになった時点で `src/components/<feature>/` または `src/components/common/` へ移動する
+- `src/components/common/` にはページ専用 UI を置かない
+- `src/components/ui/` には shadcn 生成物以外を置かない
 
 ## ツール
 

@@ -14,6 +14,12 @@
 - `@/*` → `src/*` を使用（`#/*` は使わない）
 - `package.json` の `imports` フィールドは使用しない（Vite 組み込みの `resolve.tsconfigPaths` で解決）
 
+## Export Policy
+
+- アプリケーションコードでは `default export` を使わず、named export を使う
+- 例外として、Storybook の `export default meta` とツール設定ファイルの `export default` は許容する
+- `src/components/ui/` の shadcn 生成物は生成元のスタイルを維持してよく、`function` 宣言や既存の export 形式を無理に変えない
+
 ## Component Structure
 
 ```
@@ -28,6 +34,15 @@ src/components/
 - `ui/` は `pnpm dlx shadcn@latest add <name>` で生成する場所。直接作成しない
 - 特定ページ専用でない汎用コンポーネントは `common/` 配下にサブディレクトリを作って配置
 - `@unpic/react` を直接 import せず `common/media/image.tsx` 経由で使用する
+
+## Route Structure
+
+- `/` は `src/routes/index.tsx` を使用する
+- 通常ページは `src/routes/<route>/index.tsx` を route 定義ファイルとする
+- ページ専用の分割コンポーネント、hook、schema、整形関数は `src/routes/<route>/` 配下にコロケーションする
+- route 定義ファイルには route 定義、`head()`, loader/action 呼び出し、ページ骨格だけを残す
+- 補助ファイルは file-based routing の走査対象から外すため、`-page.tsx` や `-foo.ts` のように `-` プレフィックスを付ける
+- 複数画面で再利用するようになったら `src/components/<feature>/` または `src/components/common/` へ移動する
 
 ## Tooling
 

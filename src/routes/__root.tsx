@@ -1,10 +1,11 @@
 import { HeadContent, Scripts, createRootRouteWithContext } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
-import Footer from '../components/common/layout/footer'
-import Header from '../components/common/layout/header'
-
-import TanStackQueryDevtools from '../integrations/tanstack-query/devtools'
+import { Footer } from '../components/common/layout/footer'
+import { Header } from '../components/common/layout/header'
+import { tanStackQueryDevtools } from '../integrations/tanstack-query/devtools'
+import { RootErrorPage } from './-error-page'
+import { RootNotFoundPage } from './-not-found'
 
 import appCss from '../styles.css?url'
 
@@ -29,14 +30,29 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
       {
         title: 'TanStack Start Starter',
       },
+      {
+        name: 'description',
+        content:
+          'A clean TanStack Start boilerplate with routing, SSR, Tailwind CSS, testing, and starter UI building blocks.',
+      },
+      {
+        name: 'theme-color',
+        content: '#e7f3ec',
+      },
     ],
     links: [
       {
         rel: 'stylesheet',
         href: appCss,
       },
+      {
+        rel: 'manifest',
+        href: '/manifest.json',
+      },
     ],
   }),
+  notFoundComponent: RootNotFoundPage,
+  errorComponent: RootErrorPage,
   shellComponent: RootDocument,
 })
 
@@ -51,18 +67,20 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <Header />
         {children}
         <Footer />
-        <TanStackDevtools
-          config={{
-            position: 'bottom-right',
-          }}
-          plugins={[
-            {
-              name: 'Tanstack Router',
-              render: <TanStackRouterDevtoolsPanel />,
-            },
-            TanStackQueryDevtools,
-          ]}
-        />
+        {import.meta.env.DEV ? (
+          <TanStackDevtools
+            config={{
+              position: 'bottom-right',
+            }}
+            plugins={[
+              {
+                name: 'Tanstack Router',
+                render: <TanStackRouterDevtoolsPanel />,
+              },
+              tanStackQueryDevtools,
+            ]}
+          />
+        ) : null}
         <Scripts />
       </body>
     </html>

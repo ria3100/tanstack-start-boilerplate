@@ -47,6 +47,8 @@ pnpm dlx shadcn@latest add button
 pnpm storybook
 ```
 
+アプリ内ルートではなく、通常は `http://localhost:6006` で確認する。
+
 ## ディレクトリ構成
 
 ```
@@ -57,6 +59,10 @@ src/
       layout/    # Header, Footer, ThemeToggle
       media/     # Image, Picture
   routes/        # ファイルベースルーティング
+    __root.tsx   # ルートレイアウト
+    index.tsx    # "/" の route 定義
+    index/       # "/" 専用の分割コンポーネント
+    about/       # "/about" の route 定義と分割コンポーネント
   lib/           # ユーティリティ
 ```
 
@@ -68,6 +74,9 @@ src/
 
 `src/routes/` にファイルを追加する。TanStack Router がルートファイルの内容を自動生成する。
 
+- `/` は `src/routes/index.tsx` を使用する
+- 通常ページは `src/routes/<route>/index.tsx` を基本形とする
+
 ### リンク
 
 ```tsx
@@ -78,6 +87,33 @@ import { Link } from '@tanstack/react-router'
 ### レイアウト
 
 レイアウトは `src/routes/__root.tsx` に定義する。全ルート共通のUIはここに記述する。
+
+### ページ肥大化時の分割
+
+ページ専用の分割コンポーネントは、Next.js と同様に route 近傍へコロケーションしてよい。
+
+```text
+src/routes/
+  dashboard/
+    index.tsx
+    components/
+      stats-card.tsx
+      activity-list.tsx
+    hooks/
+      use-dashboard-filters.ts
+    lib/
+      format-dashboard-data.ts
+```
+
+- route 定義ファイルには route 定義、`head()`, loader/action 呼び出し、ページ骨格だけを置く
+- その route でしか使わないものは `src/routes/<route>/` 配下へ置き、route 定義は `src/routes/<route>/index.tsx` にまとめる
+- 複数画面で再利用するようになったら `src/components/<feature>/` か `src/components/common/` へ移す
+- `src/components/ui/` は shadcn 生成物専用なので、手書きのページ部品は置かない
+- file-based routing の走査対象から外すため、route ではない補助ファイルは `-page.tsx` や `-foo.ts` のように `-` プレフィックスを付ける
+
+### エラーと 404
+
+共通の `errorComponent` と `notFoundComponent` を `src/routes/__root.tsx` に定義している。boilerplate を複製した後は、ブランドに合わせて文言と導線を更新する。
 
 ## サーバー関数
 
@@ -139,3 +175,11 @@ function PeopleComponent() {
 
 - [TanStack ドキュメント](https://tanstack.com)
 - [TanStack Start ドキュメント](https://tanstack.com/start)
+
+## 最初に差し替える項目
+
+- `src/routes/__root.tsx` の title / description / theme-color
+- `public/manifest.json` のアプリ名と配色
+- `src/components/common/layout/header.tsx` の外部リンク
+- `src/components/common/layout/footer.tsx` のコピーライト表記
+- `src/routes/index/-page.tsx` のトップ文言

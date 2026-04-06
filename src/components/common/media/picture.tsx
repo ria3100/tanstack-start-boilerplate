@@ -37,7 +37,7 @@ type PictureProps = ComponentProps<typeof Image> & {
  *   lg={{ src: "/hero-lg.jpg", width: 1200, height: 600 }}
  * />
  */
-function Picture({ sources, className, sm, md, lg, xl, ...rest }: PictureProps) {
+const Picture = ({ sources, className, sm, md, lg, xl, ...rest }: PictureProps) => {
   const { ...imageProps } = rest
   const responsive = [
     { bp: 'xl' as const, value: xl },
