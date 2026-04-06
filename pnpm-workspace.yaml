@@ -3,4 +3,7 @@ onlyBuiltDependencies:
   - lightningcss
 
 # 3日（4320分）
-minimumReleaseAge: 4320
+# minimumReleaseAge: 4320
+# minimumReleaseAgeExclude:
+#   - '@typescript/native-preview'
+#   - '@typescript/native-preview-*'
