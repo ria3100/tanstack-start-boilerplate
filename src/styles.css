@@ -6,6 +6,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* NOTE: https://www.figma.com/community/file/1203061493325953101 を共有して値を検討する */
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.141 0.005 285.823);
@@ -120,6 +121,11 @@ html,
 body,
 #app {
   min-height: 100%;
+}
+
+/* TODO: パターン分追加する */
+@utility typo-large {
+  @apply text-lg font-semibold;
 }
 
 @layer base {

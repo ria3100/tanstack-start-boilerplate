@@ -8,12 +8,13 @@
     "preview": "vp preview",
     "test": "vp test run",
     "check": "vp check",
+    "doctor": "react-doctor .",
+    "knip": "knip",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "prepare": "vp config"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.27.1",
     "@storybook/react-vite": "^10.2.15",
     "@tailwindcss/vite": "^4.1.18",
     "@tanstack/react-devtools": "latest",
@@ -50,6 +51,8 @@
     "@vitejs/plugin-react": "^5.1.4",
     "babel-plugin-react-compiler": "^1.0.0",
     "jsdom": "^28.1.0",
+    "knip": "^6.3.0",
+    "react-doctor": "^0.0.31",
     "typescript": "^5.7.2",
     "vite": "npm:@voidzero-dev/vite-plus-core@latest",
     "vite-plus": "latest",

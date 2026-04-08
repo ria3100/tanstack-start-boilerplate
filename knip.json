@@ -1,0 +1,16 @@
+{
+  "$schema": "https://unpkg.com/knip@latest/schema.json",
+  "entry": ["src/router.tsx", "src/routes/**/{__root,index}.tsx", "src/components/ui/**/*.tsx"],
+  "project": ["src/**/*.{ts,tsx}"],
+  "ignoreDependencies": [
+    "tailwindcss",
+    "@tailwindcss/typography",
+    "@tanstack/router-plugin",
+    "@typescript/native-preview",
+    "motion",
+    "tw-animate-css",
+    "vitest",
+    "zod"
+  ],
+  "ignoreExportsUsedInFile": true
+}

@@ -54,9 +54,14 @@ description: Review Tailwind CSS class usage in .tsx files for quality, consiste
 - 条件付きクラスには `cn()` (`@/lib/utils`) を使用しているか
 - マジックナンバー的な値（`w-[347px]` 等）がないか。あれば意図を確認
 
+### タイポグラフィ
+
+- `styles.css` で `@utility typo-*` として定義されたタイポグラフィユーティリティがある場合、`text-lg font-semibold` のように個別指定せず `typo-large` 等の対応するユーティリティを使用しているか
+- 定義済みの `typo-*` に該当するパターンを見つけたら置換を提案する
+
 ### CSS カスタムプロパティ
 
-- `styles.css` で定義されたカスタムプロパティ（`--sea-ink`, `--lagoon` 等）を適切に使用しているか
+- `styles.css` で定義されたカスタムプロパティを適切に使用しているか
 - Tailwind ユーティリティで表現可能なものをカスタムプロパティで代替していないか
 
 ## レビュー対象外
