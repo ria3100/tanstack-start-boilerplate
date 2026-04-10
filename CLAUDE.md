@@ -61,3 +61,16 @@ src/components/
 - 単一画像: `Image`（`common/media/image.tsx`）
 - breakpoint で出し分け: `Picture`（`common/media/picture.tsx`）
 - 対応 CDN: Cloudinary, imgix, Cloudflare, Vercel 等
+
+## Storybook MCP
+
+Storybook が起動中（`pnpm storybook`）のとき、`storybook` MCP サーバーが `http://localhost:6006/mcp` で利用可能になる。
+
+UI コンポーネントを新規作成・修正する際は、以下の順で MCP ツールを活用する:
+
+1. `list-all-documentation` — 利用可能なコンポーネントと既存ストーリーを確認する
+2. `get-documentation` — 対象コンポーネントの props・使用例を確認し、ドキュメントに存在しないプロパティは使用しない
+3. `preview-stories` — 実装後にストーリーの URL を取得して視覚的に確認する
+4. `run-story-tests` — テストとアクセシビリティチェックを実行する
+
+Storybook が起動していない場合はこれらのツールを使用しない。
